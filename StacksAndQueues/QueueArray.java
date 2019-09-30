@@ -1,3 +1,8 @@
+/**
+ * QueueArray.java
+ * 
+ * queue with underlying representation as an Array
+ */
 
 public class QueueArray<E> {
 	
@@ -7,21 +12,36 @@ public class QueueArray<E> {
 	
 	public static final int INIT_CAP = 8;
 	
+	/**
+	 * constructs a new Array for queue
+	 */
 	public QueueArray() {
 		q = (E[]) new Object[INIT_CAP];
 		first = -1;		//index of first actual data
 		last = -1;		//index of most recent addition
 	}
 	
-	public boolean isEmpty() {
-		return (count == 0);
-	}
-	
+	/**
+	 * return the size of the queue
+	 * @return size of the queue
+	 */
 	public int size() {
 		return count;
 	}
 	
-	public void add (E d) {
+	/**
+	 * return whether or not the queue is empty
+	 * @return whether or not the queue is empty
+	 */
+	public boolean isEmpty() {
+		return (count == 0);
+	}
+	
+	/**
+	 * offers new data to the top of the stack
+	 * @param d data to be removed
+	 */
+	public void offers(E d) {
 		//resize if necessary
 		//first == (last + 1) fails if the indices do not cross (no removal)
 		if (count == q.length) {
@@ -45,8 +65,6 @@ public class QueueArray<E> {
 			
 		}
 		
-		//++last;
-		//q[last] = d;
 		//q[++last] = d;	//could result in ArrayIndexOutOfBoundsException
 		last = (last + 1) % q.length;
 		q[last] = d;
@@ -54,7 +72,12 @@ public class QueueArray<E> {
 		
 	}
 	
-	public E poll() {
+	/**
+	 * returns and removes front of the queue if not empty
+	 * @return front of the queue
+	 * @throws Exception 
+	 */
+	public E poll() throws Exception{
 		if (isEmpty()) {
 			//throw exception
 			return null;
@@ -62,20 +85,18 @@ public class QueueArray<E> {
 		
 		E toReturn = q[first];
 		
-		/*
-		++first;
-		if (first == q.length) {
-			first = 0;
-		}
-		*/
-		
 		first = (first + 1) % q.length;
 		--count;
 		
 		return toReturn;
 	}
 	
-	public E front() {
+	/**
+	 * returns front of the queue if not empty
+	 * @return front of the queue
+	 * @throws Exception 
+	 */
+	public E front() throws Exception{
 		if (isEmpty()) {
 			//throw exception
 			return null;

@@ -6,7 +6,6 @@
 
 public class StackDNode<E> {
 	
-	//member variables
 	private DNode<E> tos;	//head; add to front
 	private int count;
 
@@ -30,9 +29,7 @@ public class StackDNode<E> {
 	 * @return whether or not the stack is empty
 	 */
 	public boolean isEmpty() {
-		return (tos == null);
-		//or
-		//return count == 0;
+		return (tos == null); //or return (count == 0)
 	}
 	
 	/**
@@ -41,7 +38,7 @@ public class StackDNode<E> {
 	 * O(1)
 	 */
 	public void push(E d) {
-		tos = new DNode<E>(null, d, tos);	//prev is whatever current top of stack is pointing to
+		tos = new DNode<E>(null, d, tos);
 		++count;
 	}
 	
@@ -50,11 +47,10 @@ public class StackDNode<E> {
 	 * @return top of the stack
 	 * @throws Exception 
 	 */
-	public E pop() throws Exception {
+	public E pop() throws Exception{
 		if (isEmpty()) {
-//			throw new StackUnderflowException(" pop: stack is empty");
-			throw new Exception("pop: stack is empty");
-//			System.err.println("pop: stack is empty");
+			//throw exception
+			return null;
 		}
 		
 		E temp = tos.data;
@@ -72,9 +68,8 @@ public class StackDNode<E> {
 	 */
 	public E top() throws Exception {
 		if (isEmpty()) {
-//			throw new StackUnderflowException("top: stack is empty");
-//			throw new Exception("top: stack is empty");
-			System.err.println("top: stack is empty");
+			//throw exception
+			return null;
 		}
 		
 		return tos.data;

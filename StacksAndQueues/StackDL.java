@@ -33,7 +33,7 @@ public class StackDL<E> {
 	
 	/**
 	 * pushes new data to the top of the stack
-	 * @param d data to be removed
+	 * @param d data to be added
 	 * O(1) if properly implemented
 	 */
 	public void push(E d) {
@@ -48,15 +48,11 @@ public class StackDL<E> {
 	 */
 	public E pop() throws Exception {
 		if (isEmpty()) {
-//			throw new StackUnderflowException(" pop: stack is empty");
-//			throw new Exception("pop: stack is empty");
-//			System.err.println("pop: stack is empty");
+//			throw new StackUnderflowException("pop: stack is empty");
 			return null;
 		}
 		
 		return stack.remove(stack.size() - 1);
-		//use this after we implement remove
-//		return stack.remove(stack.size() - 1);
 	}
 	
 	/**
@@ -68,8 +64,7 @@ public class StackDL<E> {
 	public E top() throws Exception {
 		if (isEmpty()) {
 //			throw new StackUnderflowException("top: stack is empty");
-			throw new Exception("top: stack is empty");
-//			System.err.println("top: stack is empty");
+			return null;
 		}
 		
 		return stack.get(stack.size() - 1);

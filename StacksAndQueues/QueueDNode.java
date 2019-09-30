@@ -1,10 +1,10 @@
-import java.util.Iterator;
-
 /**
  * QueueDNode.java
  * 
- * queue with simplified, non-headed, doubly-linked list as underlying representation
+ * queue with simplified, non-headed, iterable, doubly-linked list as underlying representation
  */
+
+import java.util.Iterator;
 
 public class QueueDNode<E> implements Iterable<E>{
 	
@@ -76,13 +76,13 @@ public class QueueDNode<E> implements Iterable<E>{
 	}
 
 	/**
-	 * add new data to the top of the stack
-	 * @param d data to be removed
+	 * add new data to the end of the queue
+	 * @param d data to be added
 	 * O(1) if properly implemented
 	 */
 	public void add(E d) {
 		//count == 0 is faster, but isEmpty makes it very clear what we are trying to do
-		//DNode(next, data, prev) ?
+		//DNode(prev, data, next)
 		if (isEmpty()) {
 			first = last = new DNode<E>(null, d, null);
 		}
@@ -96,16 +96,14 @@ public class QueueDNode<E> implements Iterable<E>{
 	}
 
 	/**
-	 * returns and removes the front of the queue
-	 * @return front of the stack
+	 * returns and removes the front of the queue if not empty
+	 * @return front of the queue
 	 * @throws Exception 
 	 * O(1) if properly implemented
 	 */
-	public E poll() throws Exception {
+	public E poll() throws Exception{
 		if (isEmpty()) {
-			//			throw new StackUnderflowException("poll: stack is empty");
-			//			throw new Exception("poll: stack is empty");
-			//			System.err.println("poll: stack is empty");
+			//throw exception
 			return null;
 		}
 		E tmp = first.data;
@@ -118,15 +116,14 @@ public class QueueDNode<E> implements Iterable<E>{
 
 	/**
 	 * returns the front of this queue if not empty
-	 * @return front of the stack
+	 * @return front of the queue
 	 * @throws Exception 
 	 * O(1) depending on implementation
 	 */
-	public E front() throws Exception {
+	public E front() throws Exception{
 		if (isEmpty()) {
-			//			throw new StackUnderflowException("top: stack is empty");
-			throw new Exception("front: queue is empty");
-			//			System.err.println("top: stack is empty");
+			//throw exception
+			return null;
 		}
 
 		return first.data;
@@ -141,14 +138,15 @@ public class QueueDNode<E> implements Iterable<E>{
 //		System.out.println("should remove E: " + queue.poll());
 
 		//testing iterator
-		// 1
+		
+		// 1 Implicit Iterator
 		System.out.println("Print  all contents using for each loop");
 		for (Character d : queue) {
 			System.out.print(d + "");
 		}
 		System.out.println();
 		
-		// 0 O(N^2)
+//		O(N^2)
 //		System.out.println("Print all contents using for loop and get(int)");
 //		for (int i = 0; i < queue.size(); ++i) {
 //			System.out.println(queue.poll(i) + " ");
@@ -161,9 +159,6 @@ public class QueueDNode<E> implements Iterable<E>{
 			//qIter.next();
 			System.out.print(qIter.next() + " ");
 		}
-		System.out.println();
 	}
-
-
-
+	
 }

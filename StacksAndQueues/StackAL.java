@@ -1,4 +1,6 @@
 /**
+ * StackAL.java
+ * 
  * stack with underlying representation as an ArrayList
  */
 
@@ -49,12 +51,13 @@ public class StackAL<E> {
 	 */
 	public E pop() throws Exception {
 		if (isEmpty()) {
-//			throw new StackUnderflowException(" pop: stack is empty");
-			throw new Exception("pop: stack is empty");
+//			throw new StackUnderflowException("pop: stack is empty");
+//			throw new Exception("pop: stack is empty");
 //			System.err.println("pop: stack is empty");
+			return null;
 		}
 		
-		return stack.get(stack.size() - 1);
+		return stack.remove(stack.size() - 1);
 	}
 	
 	/**
@@ -66,8 +69,9 @@ public class StackAL<E> {
 	public E top() throws Exception {
 		if (isEmpty()) {
 //			throw new StackUnderflowException("top: stack is empty");
-			throw new Exception("top: stack is empty");
+//			throw new Exception("top: stack is empty");
 //			System.err.println("top: stack is empty");
+			return null;
 		}
 		
 		return stack.get(stack.size() - 1);

@@ -1,4 +1,6 @@
 /**
+ * StackArray.java
+ * 
  * stack with underlying representation as an Array
  */
 
@@ -11,7 +13,7 @@ public class StackArray<E> {
 	public static final int INTI_SIZE = 8;
 
 	/**
-	 * constructs a new ArrayList for stack
+	 * constructs a new Array for stack
 	 */
 	public StackArray() {
 		stack = (E[]) (new Object[INTI_SIZE]);
@@ -45,14 +47,14 @@ public class StackArray<E> {
 		if (count == stack.length) {
 			E[] tmp = (E[]) new Object[stack.length * 2];
 			
-			//copy over
-			// (1) O(N)
+			// (1) copy over
+			// O(N)
 			for (int i = 0; i < count; ++i) {
 				tmp[i] = stack[i];
 			}
 			
-			// (2) 
-			// O(1) using System.arraycopy(src, fromIndex, dst, toIndex, length)
+			// (2) using System.arraycopy(src, fromIndex, dst, toIndex, length)
+			// O(1) 
 			System.arraycopy(stack, 0, tmp, 0, stack.length);
 			
 			//stack pointer is updated to this new array
@@ -68,13 +70,13 @@ public class StackArray<E> {
 	/**
 	 * returns the top of this stack if not empty
 	 * @return top of the stack
+	 * @throws Exception
 	 * O(1) since no shifting to the left/right is necessary
 	 */
-	public E pop() {
+	public E pop() throws Exception{
 		if (isEmpty()) {
-//			throw new StackUnderflowException("pop: stack is empty");
-//			throw new Exception("pop: stack is empty");
-//			System.err.println("pop: stack is empty");
+			//throw Exception
+			return null;
 		}
 		
 		E popped = stack[tos];
@@ -86,12 +88,13 @@ public class StackArray<E> {
 	/**
 	 * returns the top of this stack if not empty
 	 * @return top of stack
-	 *O(1)
+	 * @throws Exception
+	 * O(1)
 	 */
-	public E top() {
+	public E top() throws Exception{
 		if (isEmpty()) {
-//			throw new StackUnderflowException("top: stack is empty");
-			System.err.println("top: stack is empty");
+			//throw Exception
+			return null;
 		}
 		
 		return stack[tos];
