@@ -80,10 +80,6 @@ public class HashMap<K, V> {
 	 * @return the value originally associated with the key if the table already had one, otherwise returns null
 	 */
 	public V put(K key, V value) {
-		//is the current load factor > maxLoad factor? -> rehash
-		//was there a deleted index discovered before this? -> create a new hashentry at deleted index
-		//was there no deleted index? -> resize() and call put(K, V) recursively
-
 		int hI = hash(key);		//primary hash index for key
 
 		//start quadratic probing
@@ -128,7 +124,6 @@ public class HashMap<K, V> {
 			index =  hI + k * k;
 			index = index % table.length; 
 			++k;
-			table[index] = table[index];
 		}
 
 		//at this point, sequence is exhausted
